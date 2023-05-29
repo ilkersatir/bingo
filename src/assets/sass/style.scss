@@ -1,0 +1,42 @@
+:root {
+	--font-size-base: 16px;
+	--bg-color: #c5bfbf;
+	--white: #fff;
+	--black: #000;
+	--black-transparent: rgba(0, 0, 0, 0.5);
+	--theme-dark: #27374d;
+	--theme-light: #dde6ed;
+	--theme-primary: #29abe2;
+	--theme-primary-light: #218ab8;
+	--theme-primary-dark: #065053;
+	--theme-secondary: #e783c4;
+	--theme-secondary-light: #fcabe0;
+	--theme-secondary-dark: #ce6eac;
+	--theme-success: #28a745;
+	--theme-success-light: #34d058;
+	--theme-success-dark: #22863a;
+}
+
+html {
+	font-size: var(--font-size-base);
+}
+
+body {
+	background-color: var(--bg-color);
+	font-family: "Arial", sans-serif;
+	text-rendering: optimizeLegibility;
+	transition: 100ms;
+	transition-property: background-color, color;
+	overflow: hidden;
+}
+
+h1 {
+	color: var(--theme-dark);
+}
+
+sub {
+	color: var(--theme-dark);
+}
+
+@import "normalize";
+@import "scrollbar";

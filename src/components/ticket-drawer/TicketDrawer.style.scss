@@ -1,0 +1,129 @@
+.drawer {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	min-height: 40px;
+	margin: 1rem 0;
+
+	&--player {
+		justify-content: center;
+	}
+
+	&--game-master {
+		flex-direction: column;
+		height: 100%;
+		max-width: 420px;
+		justify-content: space-between;
+		padding: 1rem;
+	}
+}
+
+.drawer__ticket {
+	opacity: 0;
+	background: var(--theme-primary);
+	color: var(--white);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	transform: rotate(-2deg);
+	transition: all 0.2s ease-in-out;
+	margin: 0.5rem 0;
+
+	&__content {
+		width: 100%;
+		padding: 0 0.5rem;
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__dots {
+		height: 100%;
+		width: 5px;
+		background: var(--theme-primary);
+
+		span {
+			height: 8px;
+			width: 10px;
+			display: inherit;
+			position: relative;
+			left: -2px;
+			border-radius: 50%;
+
+			&:nth-child(even) {
+				background: var(--theme-primary);
+				z-index: -1;
+			}
+
+			&:nth-child(odd) {
+				height: 2px;
+			}
+		}
+	}
+}
+
+.draw-total {
+	font-size: small;
+	font-weight: bold;
+	padding: 0.25rem;
+	background-color: var(--white);
+	color: var(--theme-primary);
+	border-radius: 0.25rem;
+}
+
+.ticket-scroller {
+	height: calc(100vh - 200px);
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding: 1rem;
+	border-radius: 1rem;
+}
+
+.counter_container {
+	display: inline-block;
+	vertical-align: middle;
+
+	.ticket__counter--bubble {
+		font-size: x-small;
+		font-weight: bold;
+		background: var(--white);
+		color: var(--theme-primary);
+		border-radius: 50%;
+		width: 18px;
+		height: 18px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.pop-in {
+	animation-name: popIn;
+	animation-duration: 0.3s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: both;
+}
+
+@keyframes popIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@media (max-height: 780px) {
+	.drawer {
+		&--player {
+			margin-top: 0;
+		}
+
+		&--game-master {
+			margin-top: 0;
+		}
+	}
+}
