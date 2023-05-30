@@ -31,9 +31,9 @@ export const Router = () => {
 		<Suspense fallback={<div style={loadingStyle}>Loading...</div>}>
 			<Routes>
 				<Route path="/" element={<StartView />} />
-				<Route path="/singleplayer" element={<InGameView mode="singleplayer" />} />
-				<Route path="/multiplayer/master" element={<MultiplayerMasterView />} />
-				<Route path="/multiplayer/game" element={<InGameView mode="multiplayer" />} />
+				<Route path="singleplayer" element={<InGameView mode="singleplayer" />} />
+				<Route path="multiplayer/master" element={<MultiplayerMasterView />} />
+				<Route path="multiplayer/game" element={<InGameView mode="multiplayer" />} />
 				<Route path="*" element={<StartView />} />
 			</Routes>
 		</Suspense>
