@@ -24,8 +24,6 @@ export const TicketCounter = () => {
 		}
 
 		return () => clearInterval(timer);
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [countdown, drawCard, countdownTimer, stopTimer]);
 
 	if (stopTimer) return null;

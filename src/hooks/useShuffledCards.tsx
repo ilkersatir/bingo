@@ -6,7 +6,6 @@ export const useShuffledCards = () => {
 
 	useEffect(() => {
 		shuffleGames();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const shuffleGames = () => {

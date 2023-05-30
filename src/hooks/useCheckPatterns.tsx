@@ -29,8 +29,6 @@ export const useCheckPatterns = () => {
 		if (achievedPatterns.length > 0) {
 			setPlayerDidWin(true);
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [achievedPatterns]);
 
 	useEffect(() => {

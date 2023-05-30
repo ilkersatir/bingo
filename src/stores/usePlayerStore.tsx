@@ -23,6 +23,6 @@ export const usePlayerStore = create<Store>((set) => {
 				return state;
 			});
 		},
-		resetPlayerCards: () => set(() => ({ playerCards: ["c3"] })),
+		resetPlayerCards: () => set(() => ({ playerCards: ["c3"], playerDidWin: false })),
 	};
 });
