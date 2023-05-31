@@ -5,12 +5,6 @@ const StartView = lazy(() =>
 	import("../views/StartView").then((module) => ({ default: module.StartView }))
 );
 
-const MultiplayerMasterView = lazy(() =>
-	import("../views/MultiplayerMasterView").then((module) => ({
-		default: module.MultiplayerMasterView,
-	}))
-);
-
 const InGameView = lazy(() =>
 	import("../views/InGameView").then((module) => ({ default: module.InGameView }))
 );
@@ -31,9 +25,7 @@ export const Router = () => {
 		<Suspense fallback={<div style={loadingStyle}>Loading...</div>}>
 			<Routes>
 				<Route path="/" element={<StartView />} />
-				<Route path="singleplayer" element={<InGameView mode="singleplayer" />} />
-				<Route path="multiplayer/master" element={<MultiplayerMasterView />} />
-				<Route path="multiplayer/game" element={<InGameView mode="multiplayer" />} />
+				<Route path="singleplayer" element={<InGameView />} />
 				<Route path="*" element={<StartView />} />
 			</Routes>
 		</Suspense>

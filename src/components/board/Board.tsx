@@ -1,13 +1,7 @@
 import { BoardCard } from "./BoardCard";
 import { useShuffledCards } from "hooks";
 
-type gameMode = {
-	mode: "singleplayer" | "multiplayer";
-};
-
-export const Board = (props: gameMode) => {
-	const { mode } = props;
-
+export const Board = () => {
 	const boardMatrix = [0, 1, 2, 3, 4];
 	const letters = ["a", "b", "c", "d", "e"];
 
@@ -25,9 +19,7 @@ export const Board = (props: gameMode) => {
 							const id = letters[col] + (row + 1);
 
 							const game = games[index];
-							return (
-								<BoardCard CardId={id} card={game} index={index} key={col} mode={mode} />
-							);
+							return <BoardCard CardId={id} card={game} index={index} key={col} />;
 						})}
 					</div>
 				);

@@ -5,10 +5,6 @@ import { winningPattern } from "data";
 
 import star from "assets/images/star.png";
 
-type gameMode = {
-	mode: "singleplayer" | "multiplayer";
-};
-
 type BoardSquareProps = {
 	CardId: string;
 	card?: {
@@ -16,10 +12,10 @@ type BoardSquareProps = {
 		title: string;
 	};
 	index: number;
-} & gameMode;
+};
 
 export const BoardCard = (props: BoardSquareProps) => {
-	const { index, card, CardId = "", mode } = props;
+	const { index, card, CardId = "" } = props;
 	const { id = 999, title = "" } = card || {};
 
 	const { playerCards, addToPlayerCards } = usePlayerStore();
@@ -36,11 +32,7 @@ export const BoardCard = (props: BoardSquareProps) => {
 	const handleClick = () => {
 		if (isOnBoard) return;
 
-		if (mode === "singleplayer" && drawnCards.includes(id)) {
-			addToPlayerCards(CardId);
-		}
-
-		if (mode === "multiplayer") {
+		if (drawnCards.includes(id)) {
 			addToPlayerCards(CardId);
 		}
 	};

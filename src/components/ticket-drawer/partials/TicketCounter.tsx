@@ -10,7 +10,7 @@ export const TicketCounter = () => {
 	const { drawnCards } = useDrawnCardsStore();
 	const { drawCard } = useCardDrawing();
 
-	const stopTimer = drawnCards.length === MAX_ITERATIONS;
+	const stopTimer = drawnCards.length >= MAX_ITERATIONS;
 
 	useEffect(() => {
 		const timer = setInterval(() => {
