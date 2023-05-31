@@ -1,14 +1,15 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { LinkProps, useNavigate } from "react-router-dom";
 
 type ButtonProps = {
 	handler?: () => void;
 	children?: ReactNode;
 	path?: LinkProps["to"];
+	style?: CSSProperties;
 };
 
 export const ButtonLink = (props: ButtonProps) => {
-	const { children, path = "" } = props;
+	const { children, path = "", style } = props;
 	const navigate = useNavigate();
 
 	const handleClick = () => {
@@ -20,7 +21,7 @@ export const ButtonLink = (props: ButtonProps) => {
 	};
 
 	return (
-		<button className="btn btn--link" onClick={handleClick}>
+		<button className="btn btn--link" onClick={handleClick} style={style}>
 			{children}
 		</button>
 	);

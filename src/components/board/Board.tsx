@@ -1,11 +1,22 @@
+import { useEffect, useState } from "react";
 import { BoardCard } from "./BoardCard";
-import { useShuffledCards } from "hooks";
+import { BoardCardStar } from "./BoardCardStar";
+import { gameTitles } from "data";
+
+type GameTitle = {
+	id: number;
+	title: string;
+};
 
 export const Board = () => {
 	const boardMatrix = [0, 1, 2, 3, 4];
 	const letters = ["a", "b", "c", "d", "e"];
+	const [shuffledGameTitles, setShuffledGameTitles] = useState<GameTitle[]>([]);
 
-	const games = useShuffledCards();
+	useEffect(() => {
+		const shuffledTitles: GameTitle[] = gameTitles.sort(() => Math.random() - 0.5);
+		setShuffledGameTitles(shuffledTitles);
+	}, []);
 
 	return (
 		<div className="board">
@@ -14,12 +25,14 @@ export const Board = () => {
 					<div className="board__row" key={key}>
 						{boardMatrix.map((col) => {
 							const index = row * 5 + col;
-
-							// Generate the ID using row and col values
 							const id = letters[col] + (row + 1);
+							const game = shuffledGameTitles[index];
 
-							const game = games[index];
-							return <BoardCard CardId={id} card={game} index={index} key={col} />;
+							if (index === 12) {
+								return <BoardCardStar key={col} />;
+							}
+
+							return <BoardCard CardId={id} card={game} key={col} />;
 						})}
 					</div>
 				);

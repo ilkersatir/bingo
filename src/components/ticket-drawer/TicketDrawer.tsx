@@ -3,11 +3,15 @@ import { gameTitles } from "data";
 import { TicketDisplay } from "./partials";
 
 export const TicketDrawer = () => {
-	const { drawnCards } = useCardDrawing();
+	const { drawnCards, drawCard } = useCardDrawing();
 
 	return (
 		<div className="drawer drawer--player">
-			<TicketDisplay drawnCards={drawnCards} gameTitles={gameTitles} />
+			<TicketDisplay
+				drawnCards={drawnCards}
+				gameTitles={gameTitles}
+				drawCard={drawCard}
+			/>
 		</div>
 	);
 };

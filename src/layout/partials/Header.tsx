@@ -1,5 +1,6 @@
 import { Brand, ButtonLink } from "components";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
+import { usePlayerStore } from "stores";
 
 type HeaderProps = {
 	showHeader?: boolean;
@@ -7,6 +8,10 @@ type HeaderProps = {
 
 export const Header = (props: HeaderProps) => {
 	const { showHeader } = props;
+
+	const { playerBingoCount } = usePlayerStore();
+
+	const opacity = playerBingoCount > 0 ? 1 : 0.5;
 
 	return (
 		<header
@@ -25,7 +30,10 @@ export const Header = (props: HeaderProps) => {
 			)}
 
 			<div className="header-button-container">
-				{/* this is place for some buttons like login, logout, etc. i will add soon */}
+				<div className={`bingo-count pulse${playerBingoCount}`} style={{ opacity }}>
+					Bingo: {playerBingoCount > 0 && "x"}
+					{playerBingoCount}
+				</div>
 			</div>
 		</header>
 	);

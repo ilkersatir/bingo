@@ -2,30 +2,29 @@ import { useMemo, useState, useCallback } from "react";
 import { useDrawnCardsStore } from "stores";
 import { MAX_ITERATIONS } from "config";
 
-const generateRandomArray = () => {
-	const array: number[] = [];
-
-	while (array.length < MAX_ITERATIONS) {
-		const randomNumber = Math.floor(Math.random() * MAX_ITERATIONS);
-
-		if (!array.includes(randomNumber)) {
-			array.push(randomNumber);
-		}
-	}
-
-	return array;
-};
-
 export const useCardDrawing = () => {
 	const [drawIndex, setDrawIndex] = useState(0);
 	const { drawnCards, addToDrawnCards } = useDrawnCardsStore();
 
-	const randomArray = useMemo(() => generateRandomArray(), []);
+	const sequentialArray = useMemo(() => {
+		const array = [];
+		for (let i = 0; i < MAX_ITERATIONS; i++) {
+			array.push(i);
+		}
+		return array;
+	}, []);
 
 	const drawCard = useCallback(() => {
-		addToDrawnCards((prevNumbers) => [...prevNumbers, randomArray[drawIndex]]);
+		const nextCard = sequentialArray[drawIndex];
+
+		if (nextCard === 11) {
+			addToDrawnCards((prevNumbers) => [...prevNumbers, nextCard, 999]);
+		} else {
+			addToDrawnCards((prevNumbers) => [...prevNumbers, nextCard]);
+		}
+
 		setDrawIndex((prevIndex) => prevIndex + 1);
-	}, [addToDrawnCards, drawIndex, randomArray]);
+	}, [addToDrawnCards, drawIndex, sequentialArray]);
 
 	const memoizedDrawnCards = useMemo(() => drawnCards, [drawnCards]);
 

@@ -1,26 +1,28 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties } from "react";
 
 type CardProps = {
 	handler?: () => void;
-	children?: ReactNode;
 	style?: CSSProperties;
 	className?: string;
 	onBoard?: boolean;
 	onMouseEnter?: () => void;
 	isMatchingCard?: boolean;
+	label?: string;
 };
 
 export const Card = (props: CardProps) => {
-	const { className, handler, children, onBoard, isMatchingCard, onMouseEnter } = props;
+	const { className, handler, onBoard, onMouseEnter, isMatchingCard, label } = props;
 
-	const cardClassName = `${className} ${onBoard ? "active" : ""} ${
-		isMatchingCard ? "match" : ""
-	}`;
+	//prettier-ignore
+	const activeClass = `${onBoard ? "active" : ""}`;
+	const matchClass = `${isMatchingCard ? "match" : ""}`;
+	const cardClassName = `${className} ${activeClass} ${matchClass}`;
+
 	const cardContainerClassName = `${className}__container ${onBoard ? "active" : ""}`;
 
 	return (
 		<div className={cardClassName} onClick={handler} onMouseEnter={onMouseEnter}>
-			<div className={cardContainerClassName}>{children}</div>
+			<div className={cardContainerClassName}>{label}</div>
 		</div>
 	);
 };

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import { useDrawnCardsStore } from "stores";
-import { useCardDrawing } from "hooks";
-import { DEFAULT_TIME_TO_DRAW, MAX_ITERATIONS } from "config";
+import { DEFAULT_TIME_TO_DRAW } from "config";
 
-export const TicketCounter = () => {
-	const countdownTimer = DEFAULT_TIME_TO_DRAW / 1000;
-	const [countdown, setCountdown] = useState(countdownTimer);
+type TicketCounterProps = {
+	drawCard: () => void;
+	stopTimer: boolean;
+	drawnCards?: number[];
+};
 
-	const { drawnCards } = useDrawnCardsStore();
-	const { drawCard } = useCardDrawing();
+export const TicketCounter = (props: TicketCounterProps) => {
+	const { drawCard, stopTimer, drawnCards } = props;
 
-	const stopTimer = drawnCards.length >= MAX_ITERATIONS;
+	const [countdown, setCountdown] = useState(DEFAULT_TIME_TO_DRAW);
 
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -18,13 +18,17 @@ export const TicketCounter = () => {
 			setCountdown((prevCountdown) => prevCountdown - 1);
 		}, 1000);
 
-		if (countdown === 0) {
+		if (countdown <= 0) {
+			if (drawnCards?.length === 11) {
+				drawCard();
+				return;
+			}
 			drawCard();
-			setCountdown(countdownTimer);
+			setCountdown(DEFAULT_TIME_TO_DRAW);
 		}
 
 		return () => clearInterval(timer);
-	}, [countdown, drawCard, countdownTimer, stopTimer]);
+	}, [countdown, drawCard, stopTimer]);
 
 	if (stopTimer) return null;
 

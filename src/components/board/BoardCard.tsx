@@ -1,9 +1,7 @@
 import { Card } from "./partials";
 import { usePlayerStore, useDrawnCardsStore } from "stores";
-import { useCheckPatterns } from "hooks";
-import { winningPattern } from "data";
-
-import star from "assets/images/star.png";
+import { checkPatterns } from "hooks";
+import { useEffect } from "react";
 
 type BoardSquareProps = {
 	CardId: string;
@@ -11,23 +9,29 @@ type BoardSquareProps = {
 		id: number;
 		title: string;
 	};
-	index: number;
 };
 
 export const BoardCard = (props: BoardSquareProps) => {
-	const { index, card, CardId = "" } = props;
+	const { card, CardId = "" } = props;
 	const { id = 999, title = "" } = card || {};
 
-	const { playerCards, addToPlayerCards } = usePlayerStore();
-	const { drawnCards } = useDrawnCardsStore();
-
+	const { playerCards, addToPlayerCards, setPlayerDidWin, setPlayerBingoCount } =
+		usePlayerStore();
 	const isOnBoard = playerCards.includes(CardId);
 
-	const isMatchingCard =
-		playerCards.includes(CardId) &&
-		winningPattern.some((pattern) =>
-			pattern.every((cardId) => playerCards.includes(cardId))
-		);
+	const { drawnCards } = useDrawnCardsStore();
+	const achievedPatterns = checkPatterns(playerCards);
+	const isBingo = achievedPatterns.length > 0;
+
+	const isMatchingCard = achievedPatterns.some((pattern) => pattern.includes(CardId));
+
+	useEffect(() => {
+		setPlayerBingoCount(achievedPatterns.length);
+
+		if (isBingo) {
+			setPlayerDidWin(true);
+		}
+	}, [achievedPatterns.length, setPlayerBingoCount]);
 
 	const handleClick = () => {
 		if (isOnBoard) return;
@@ -37,24 +41,13 @@ export const BoardCard = (props: BoardSquareProps) => {
 		}
 	};
 
-	useCheckPatterns();
-
-	if (index === 12) {
-		return (
-			<div className="board-card special">
-				<img src={star} alt="star" />
-			</div>
-		);
-	}
-
 	return (
 		<Card
 			className="board-card"
 			handler={handleClick}
 			onBoard={isOnBoard}
 			isMatchingCard={isMatchingCard}
-		>
-			{title}
-		</Card>
+			label={title}
+		/>
 	);
 };
