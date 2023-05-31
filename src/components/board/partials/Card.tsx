@@ -13,12 +13,10 @@ type CardProps = {
 export const Card = (props: CardProps) => {
 	const { className, handler, onBoard, onMouseEnter, isMatchingCard, label } = props;
 
-	//prettier-ignore
 	const activeClass = `${onBoard ? "active" : ""}`;
 	const matchClass = `${isMatchingCard ? "match" : ""}`;
 	const cardClassName = `${className} ${activeClass} ${matchClass}`;
-
-	const cardContainerClassName = `${className}__container ${onBoard ? "active" : ""}`;
+	const cardContainerClassName = `${className}__container ${activeClass}`;
 
 	return (
 		<div className={cardClassName} onClick={handler} onMouseEnter={onMouseEnter}>

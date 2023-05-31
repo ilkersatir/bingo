@@ -15,6 +15,7 @@ export const Board = () => {
 
 	useEffect(() => {
 		const shuffledTitles: GameTitle[] = gameTitles.sort(() => Math.random() - 0.5);
+		shuffledTitles.splice(12, 0, { id: 999, title: "" });
 		setShuffledGameTitles(shuffledTitles);
 	}, []);
 

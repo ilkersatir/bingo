@@ -2,7 +2,7 @@ export const gameTitles = [
 	{ id: 0, title: "The Last of Us" },
 	{ id: 1, title: "Far Cry 6" },
 	{ id: 2, title: "God of War" },
-	{ id: 3, title: "Borderlands" },
+	{ id: 3, title: "Crash Bandicoot" },
 	{ id: 4, title: "Horizon Zero Dawn" },
 	{ id: 5, title: "Grand Theft Auto V" },
 	{ id: 6, title: "Bioshock" },
@@ -23,5 +23,4 @@ export const gameTitles = [
 	{ id: 21, title: "Control" },
 	{ id: 22, title: "Apex Legends" },
 	{ id: 23, title: "Genshin Impact" },
-	{ id: 24, title: "Crash Bandicoot" },
 ];
