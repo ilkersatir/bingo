@@ -8,3 +8,9 @@
 	outline: none;
 	width: 50%;
 }
+
+@media (max-width: 590px) {
+	.logo {
+		max-width: 150px !important;
+	}
+}

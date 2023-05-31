@@ -24,44 +24,6 @@
 				justify-content: flex-end;
 			}
 		}
-
-		.bingo-count {
-			color: #fff;
-			font-weight: bold;
-			font-size: xx-large;
-			transform: scale(1) rotate(-2deg);
-
-			&.pulse0,
-			&.pulse1 {
-				animation: pulse 2s infinite;
-			}
-
-			&.pulse2 {
-				animation: pulse2 2s infinite;
-			}
-
-			&.pulse3 {
-				animation: pulse3 2s infinite;
-			}
-
-			&.pulse4 {
-				animation: pulse4 1s infinite;
-			}
-
-			&.pulse5 {
-				animation: pulse4 1s infinite;
-			}
-
-			&.pulse6,
-			&.pulse7,
-			&.pulse8,
-			&.pulse9,
-			&.pulse10,
-			&.pulse11,
-			&.pulse12 {
-				animation: pulse5 2s infinite;
-			}
-		}
 	}
 
 	&--centered {
@@ -97,9 +59,51 @@
 	background-repeat: no-repeat;
 }
 
+.bingo-count {
+	color: #fff;
+	font-weight: bold;
+	font-size: xx-large;
+	transform: scale(1) rotate(-2deg);
+	white-space: nowrap;
+
+	&.pulse0,
+	&.pulse1 {
+		animation: pulse 2s infinite;
+	}
+
+	&.pulse2,
+	&.pulse3,
+	&.pulse4,
+	&.pulse5,
+	&.pulse6,
+	&.pulse7,
+	&.pulse8,
+	&.pulse9,
+	&.pulse10,
+	&.pulse11,
+	&.pulse12 {
+		animation: pulse2 2s infinite;
+	}
+}
+
 @media (max-height: 780px) {
 	.layout__header {
 		padding: 0.5rem;
+	}
+	.bingo-count {
+		font-size: xx-large;
+	}
+}
+
+@media (max-width: 590px) {
+	.bingo-count {
+		font-size: large;
+	}
+}
+
+@media (max-width: 375px) {
+	.bingo-count {
+		font-size: small;
 	}
 }
 
