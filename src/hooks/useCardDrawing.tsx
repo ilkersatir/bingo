@@ -17,12 +17,7 @@ export const useCardDrawing = () => {
 	const drawCard = useCallback(() => {
 		const nextCard = sequentialArray[drawIndex];
 
-		if (nextCard === 11) {
-			addToDrawnCards((prevNumbers) => [...prevNumbers, nextCard, 999]);
-		} else {
-			addToDrawnCards((prevNumbers) => [...prevNumbers, nextCard]);
-		}
-
+		addToDrawnCards((prevNumbers) => [...prevNumbers, nextCard]);
 		setDrawIndex((prevIndex) => prevIndex + 1);
 	}, [addToDrawnCards, drawIndex, sequentialArray]);
 

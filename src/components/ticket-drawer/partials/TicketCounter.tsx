@@ -19,10 +19,6 @@ export const TicketCounter = (props: TicketCounterProps) => {
 		}, 1000);
 
 		if (countdown <= 0) {
-			if (drawnCards?.length === 11) {
-				drawCard();
-				return;
-			}
 			drawCard();
 			setCountdown(DEFAULT_TIME_TO_DRAW);
 		}
